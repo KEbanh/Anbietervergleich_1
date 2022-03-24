@@ -1,0 +1,67 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Tiere hinzufügen</title>
+		
+	
+		<script>
+			function sortArray() {
+				arrayCopy.sort();
+				showArray()
+			}
+			
+			function showArray(number, startIndex) {
+				//n= number und i=startIndex
+				let n = arrayCopy.length;
+				let i = 0;
+				let ausgabe = "";
+				while (i < n) {
+					ausgabe = ausgabe + i + " " + arrayCopy[i] + " <button onClick = \"deleteArrayElement(" + i + ")\">X</button><br>";
+					i++;
+				}
+				ausgabe = ausgabe + "</br> Das Array beinhaltet: " + n + " Elemente </br>";
+				document.getElementById("idListe").innerHTML = ausgabe;
+			}
+				
+			
+
+			function addArrayElement(Tier) {
+				Tier=(document.getElementById("idTier").value);
+				
+				if (arrayCopy.includes(Tier)){
+				const position = arrayCopy.indexOf(Tier);
+				console.log ("Element schon vorhanden");
+				alert(("Element: " + arrayCopy[position] + " in Position:  " + position + " schon vorhanden!" ));
+
+				}
+				
+				else {
+				arrayCopy.push(Tier);
+				}
+				showArray()
+			}
+						
+			function deleteArrayElement(index, number, everyIth) {
+				arrayCopy.splice(index, 1)
+				console.log ("Element im Array gelöscht" );
+				showArray()
+			}
+			
+			
+		</script>
+	</head>
+
+	<body>
+		<h1>Tiergeschichten</h1>
+		
+		<input id="idTier" type="text" value="Monster">
+		<button onclick="addArrayElement()">Tier hinzufügen</button>
+		<button onclick="sortArray()">Tiere sortieren</button><br><br>
+		<div id="idListe"><button onclick="deleteArrayElement(0)">X</button><br> <button onclick="deleteAnimals(1)">X</button><br></div>
+		
+		<script>
+		let arrayCopy = ["Hund", "Katze", "Maus"];
+			showArray();
+		</script>
+		
+	
+</body></html>
